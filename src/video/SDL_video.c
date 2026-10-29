@@ -3854,17 +3854,14 @@ float SDL_GetWindowOpacity(SDL_Window *window)
     return window->opacity;
 }
 
-bool SDL_SetWindowMousePassthrough(SDL_Window *window, bool passthrough)
+void SDL_SetWindowMousePassthrough(SDL_Window *window, bool passthrough)
 {
-    CHECK_WINDOW_MAGIC(window, false);
-
     if (!_this->SetWindowMousePassthrough) {
-        return SDL_Unsupported();
+        SDL_Unsupported();
+        return;
     }
 
     _this->SetWindowMousePassthrough(_this, window, passthrough);
-
-    return true;
 }
 
 bool SDL_SetWindowParent(SDL_Window *window, SDL_Window *parent)
